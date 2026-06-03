@@ -14,8 +14,7 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/yourusername/chaoxing-feishu-sync.git
-cd chaoxing-feishu-sync
+git clone https://github.com/eternity1206/chaoxing-feishu-sync
 pip install -r requirements.txt
 ```
 
