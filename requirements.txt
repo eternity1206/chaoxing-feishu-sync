@@ -1,0 +1,4 @@
+requests
+pycryptodome
+beautifulsoup4
+lxml

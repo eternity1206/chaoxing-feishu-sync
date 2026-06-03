@@ -1,0 +1,41 @@
+name: 学习通作业同步到飞书
+
+on:
+  # 每 2 小时自动执行一次
+  schedule:
+    - cron: '0 */2 * * *'
+  # 支持在 GitHub 页面手动触发
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 第一步：检出代码
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      # 第二步：设置 Python 环境
+      - name: 设置 Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # 第三步：安装依赖
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      # 第四步：运行同步脚本
+      - name: 执行同步
+        run: python main.py
+        env:
+          CHAOXING_USERNAME: ${{ secrets.CHAOXING_USERNAME }}
+          CHAOXING_PASSWORD: ${{ secrets.CHAOXING_PASSWORD }}
+          CHAOXING_COOKIE: ${{ secrets.CHAOXING_COOKIE }}
+          COURSE_LIST_URL: ${{ secrets.COURSE_LIST_URL }}
+          HOMEWORK_URL_TEMPLATE: ${{ secrets.HOMEWORK_URL_TEMPLATE }}
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_APP_TOKEN: ${{ secrets.FEISHU_APP_TOKEN }}
+          FEISHU_TABLE_ID: ${{ secrets.FEISHU_TABLE_ID }}
